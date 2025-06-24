@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div class="center-container">
+        <div class="wrapper">
+            <form action="">
+                <h1>Login</h1>    
+                <div class="input-box">
+                    <input type="text" placeholder="Логин" required>
+                    <i class="bx bxs-user"></i>
+                </div>
+                <div class="input-box hint">
+                    <input type="password" placeholder="Пароль" required>
+                    <i class='bx bxs-lock-alt'></i>
+                    <div class="hint-content">
+                        Пароль должен содержать:<br>
+                        - 8+ символов<br>
+                        - Цифры<br>
+                        - Заглавные буквы
+                    </div>
+                </div>
+                <div class="password-strength">
+                    <div class="strength-bar">
+                        <div class="strength-level" data-strength="0"></div>
+                    </div>
+                    <span class="strength-text">Надежность пароля</span>
+                </div>
+                
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remember me</label>
+                    <a href="#">Forgot your password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="register-link">
+                    <p>No account? <a href="#">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="theme-switcher">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle" class="toggle-btn">
+            <i class='bx bx-moon'></i>
+        </label>
+    </div>
+
+    <div class="watermark">
+        <div class="shield-animation">
+            <i class='bx bxs-shield-alt'></i>
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring delay"></div>
+        </div>
+        <p>Secure connection</p>
+    </div>
+    
+    <script>
+        document.querySelector('input[type="password"]').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strengthBar = document.querySelector('.strength-level');
+            let strength = 0;
+            
+            if (password.length > 0) strength++;
+            if (password.length >= 6) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/\d/.test(password)) strength++;
+            
+            strengthBar.setAttribute('data-strength', strength);
+        });
+     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // Проверяем сохраненную тему
+            if (localStorage.getItem('darkTheme') === 'true') {
+                toggle.checked = true;
+                body.classList.add('dark-theme');
+            }
+            
+            // Обработчик переключения
+            toggle.addEventListener('change', function() {
+                body.classList.toggle('dark-theme', this.checked);
+                localStorage.setItem('darkTheme', this.checked);
+            });
+        });
+        </script>
+</body>
+</html>

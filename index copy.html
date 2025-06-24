@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div class="center-container">
+        <div class="wrapper">
+            <form action="">
+                <h1>Вход</h1>    
+                <div class="input-box">
+                    <input type="text" placeholder="Логин" required>
+                    <i class="bx bxs-user"></i>
+                </div>
+                <div class="input-box hint">
+                    <input type="password" placeholder="Пароль" required>
+                    <i class='bx bxs-lock-alt'></i>
+                    <div class="hint-content">
+                        Пароль должен содержать:<br>
+                        - 8+ символов<br>
+                        - Цифры<br>
+                        - Заглавные буквы
+                    </div>
+                </div>
+                <div class="password-strength">
+                    <div class="strength-bar">
+                        <div class="strength-level" data-strength="0"></div>
+                    </div>
+                    <span class="strength-text">Надежность пароля</span>
+                </div>
+                
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Запомнить меня</label>
+                    <a href="#">Забыли пароль?</a>
+                </div>
+                <button type="submit" class="btn">Войти</button>
+                <div class="register-link">
+                    <p>Нет аккаунта? <a href="#">Зарегистрироваться</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <i class='bx bx-info-circle'></i>
+                <h3>Новые возможности</h3>
+            </div>
+            <div class="flip-card-back">
+                <ul>
+                    <li><i class='bx bx-check'></i> Персональная аналитика</li>
+                    <li><i class='bx bx-check'></i> Расширенные настройки</li>
+                    <li><i class='bx bx-check'></i> Премиум-поддержка</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Интерактивный блок под формой -->
+    <div class="interactive-section">
+        <div class="security-info">
+            <div class="security-card">
+                <i class="bx bxs-shield-alt"></i>
+                <p>Защищенное соединение</p>
+            </div>
+            <div class="security-card">
+                <i class="bx bxs-bolt-circle"></i>
+                <p>Мгновенная авторизация</p>
+            </div>
+        </div>
+        
+        <div class="dynamic-banner">
+            <div class="banner-text">
+                <p>Новые возможности уже ждут вас</p>
+                <div class="banner-highlight"></div>
+            </div>
+        </div>
+    </div>
+    <div class="theme-switcher">
+        <input type="checkbox" id="theme-toggle" hidden>
+        <label for="theme-toggle" class="toggle-btn">
+            <i class='bx bx-sun'></i>
+            <i class='bx bx-moon'></i>
+            <span class="toggle-thumb"></span>
+        </label>
+    </div>
+    <div class="watermark">
+        <div class="shield-animation">
+            <i class='bx bxs-shield-alt'></i>
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring delay"></div>
+        </div>
+        <p>Защищённое соединение</p>
+    </div>
+    <div class="features-gallery">
+        <div class="gallery-item" style="--delay: 0.3s">
+            <i class='bx bx-rocket'></i>
+            <h4>Быстрый старт</h4>
+        </div>
+        <div class="gallery-item" style="--delay: 0.5s">
+            <i class='bx bx-lock-alt'></i>
+            <h4>Безопасность</h4>
+        </div>
+        <div class="gallery-item" style="--delay: 0.7s">
+            <i class='bx bx-cog'></i>
+            <h4>Настройки</h4>
+        </div>
+    </div>
+    <script>
+        document.querySelector('input[type="password"]').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strengthBar = document.querySelector('.strength-level');
+            let strength = 0;
+            
+            if (password.length > 0) strength++;
+            if (password.length >= 6) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/\d/.test(password)) strength++;
+            
+            strengthBar.setAttribute('data-strength', strength);
+        });
+        </script>
+</body>
+</html>
